@@ -1,0 +1,856 @@
+#include <check.h>
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+#include "s21_matrix.h"
+
+#Test Sum_Matrix_1
+int r1 = 3, c1 = 3, r2 = 3, c2 = 3;
+matrix_t matrixA = s21_create_matrix(r1, c1);
+matrix_t matrixB = s21_create_matrix(r2, c2);
+matrixA.matrix[0][0] = 1.000000;
+matrixA.matrix[0][1] = 1.000000;
+matrixA.matrix[0][2] = 5.000000;
+matrixA.matrix[1][0] = 3.000000;
+matrixA.matrix[1][1] = 13.000000;
+matrixA.matrix[1][2] = 5.000000;
+matrixA.matrix[2][0] = 3.000000;
+matrixA.matrix[2][1] = 3.000000;
+matrixA.matrix[2][2] = -3.000000;
+
+matrixB.matrix[0][0] = 1.000000;
+matrixB.matrix[0][1] = 2.000000;
+matrixB.matrix[0][2] = 33.000000;
+matrixB.matrix[1][0] = 324.000000;
+matrixB.matrix[1][1] = 4.000000;
+matrixB.matrix[1][2] = 2.000000;
+matrixB.matrix[2][0] = 5.000000;
+matrixB.matrix[2][1] = 2.000000;
+matrixB.matrix[2][2] = 12.000000;
+matrix_t result = s21_create_matrix(r1, c1);
+matrix_t s21_ans = s21_sum_matrix(&matrixA, &matrixB);
+result.matrix[0][0] = 2.000000;
+result.matrix[0][1] = 3.000000;
+result.matrix[0][2] = 38.000000;
+result.matrix[1][0] = 327.000000;
+result.matrix[1][1] = 17.000000;
+result.matrix[1][2] = 7.000000;
+result.matrix[2][0] = 8.000000;
+result.matrix[2][1] = 5.000000;
+result.matrix[2][2] = 9.000000;
+int res = s21_eq_matrix(&result, &s21_ans);
+s21_remove_matrix(&matrixA);
+s21_remove_matrix(&matrixB);
+s21_remove_matrix(&result);
+s21_remove_matrix(&s21_ans);
+fail_if(!res);
+
+#Test Sum_Matrix_2
+int r1 = 3, c1 = 4, r2 = 3, c2 = 4;
+matrix_t matrixA = s21_create_matrix(r1, c1);
+matrix_t matrixB = s21_create_matrix(r2, c2);
+matrixA.matrix[0][0] = 1.000000;
+matrixA.matrix[0][1] = 1.000000;
+matrixA.matrix[0][2] = 5.000000;
+matrixA.matrix[0][3] = 3.000000;
+matrixA.matrix[1][0] = 13.000000;
+matrixA.matrix[1][1] = 5.000000;
+matrixA.matrix[1][2] = 3.000000;
+matrixA.matrix[1][3] = 3.000000;
+matrixA.matrix[2][0] = -3.000000;
+matrixA.matrix[2][1] = 34.000000;
+matrixA.matrix[2][2] = 45.000000;
+matrixA.matrix[2][3] = 3.000000;
+
+matrixB.matrix[0][0] = 0.000000;
+matrixB.matrix[0][1] = 0.000000;
+matrixB.matrix[0][2] = 0.000000;
+matrixB.matrix[0][3] = 0.000000;
+matrixB.matrix[1][0] = 0.000000;
+matrixB.matrix[1][1] = 0.000000;
+matrixB.matrix[1][2] = 0.000000;
+matrixB.matrix[1][3] = 0.000000;
+matrixB.matrix[2][0] = 0.000000;
+matrixB.matrix[2][1] = 0.000000;
+matrixB.matrix[2][2] = 0.000000;
+matrixB.matrix[2][3] = 0.000000;
+matrix_t result = s21_create_matrix(r1, c1);
+matrix_t s21_ans = s21_sum_matrix(&matrixA, &matrixB);
+result.matrix[0][0] = 1.000000;
+result.matrix[0][1] = 1.000000;
+result.matrix[0][2] = 5.000000;
+result.matrix[0][3] = 3.000000;
+result.matrix[1][0] = 13.000000;
+result.matrix[1][1] = 5.000000;
+result.matrix[1][2] = 3.000000;
+result.matrix[1][3] = 3.000000;
+result.matrix[2][0] = -3.000000;
+result.matrix[2][1] = 34.000000;
+result.matrix[2][2] = 45.000000;
+result.matrix[2][3] = 3.000000;
+int res = s21_eq_matrix(&result, &s21_ans);
+s21_remove_matrix(&matrixA);
+s21_remove_matrix(&matrixB);
+s21_remove_matrix(&result);
+s21_remove_matrix(&s21_ans);
+fail_if(!res);
+
+#Test Sum_Matrix_3
+int r1 = 3, c1 = 4, r2 = 3, c2 = 3;
+matrix_t matrixA = s21_create_matrix(r1, c1);
+matrix_t matrixB = s21_create_matrix(r2, c2);
+matrixA.matrix[0][0] = 1.000000;
+matrixA.matrix[0][1] = 1.000000;
+matrixA.matrix[0][2] = 5.000000;
+matrixA.matrix[0][3] = 3.000000;
+matrixA.matrix[1][0] = 13.000000;
+matrixA.matrix[1][1] = 5.000000;
+matrixA.matrix[1][2] = 3.000000;
+matrixA.matrix[1][3] = 3.000000;
+matrixA.matrix[2][0] = -3.000000;
+matrixA.matrix[2][1] = 34.000000;
+matrixA.matrix[2][2] = 45.000000;
+matrixA.matrix[2][3] = 3.000000;
+Set_matrix_type(&matrixA);
+matrixB.matrix[0][0] = 33.000000;
+matrixB.matrix[0][1] = 5.000000;
+matrixB.matrix[0][2] = 4.000000;
+matrixB.matrix[1][0] = 3.000000;
+matrixB.matrix[1][1] = 53.000000;
+matrixB.matrix[1][2] = 5.000000;
+matrixB.matrix[2][0] = 35.000000;
+matrixB.matrix[2][1] = 53.000000;
+matrixB.matrix[2][2] = 3.000000;
+Set_matrix_type(&matrixB);
+matrix_t s21_ans = s21_sum_matrix(&matrixA, &matrixB);
+int res = s21_ans.matrix_type == INCORRECT_MATRIX;
+fail_if(!res);
+s21_remove_matrix(&matrixA);
+s21_remove_matrix(&matrixB);
+s21_remove_matrix(&s21_ans);
+
+#Test Sum_Matrix_4
+int r1 = 3, c1 = 3, r2 = 3, c2 = 3;
+matrix_t matrixA = s21_create_matrix(r1, c1);
+matrix_t matrixB = s21_create_matrix(r2, c2);
+matrixA.matrix[0][0] = 0.000000;
+matrixA.matrix[0][1] = 0.000000;
+matrixA.matrix[0][2] = 0.000000;
+matrixA.matrix[1][0] = 0.000000;
+matrixA.matrix[1][1] = 0.000000;
+matrixA.matrix[1][2] = 0.000000;
+matrixA.matrix[2][0] = 0.000000;
+matrixA.matrix[2][1] = 0.000000;
+matrixA.matrix[2][2] = 0.000000;
+
+matrixB.matrix[0][0] = 0.000000;
+matrixB.matrix[0][1] = 0.000000;
+matrixB.matrix[0][2] = 0.000000;
+matrixB.matrix[1][0] = 0.000000;
+matrixB.matrix[1][1] = 0.000000;
+matrixB.matrix[1][2] = 0.000000;
+matrixB.matrix[2][0] = 0.000000;
+matrixB.matrix[2][1] = 0.000000;
+matrixB.matrix[2][2] = 0.000000;
+matrix_t result = s21_create_matrix(r1, c1);
+matrix_t s21_ans = s21_sum_matrix(&matrixA, &matrixB);
+result.matrix[0][0] = 0.000000;
+result.matrix[0][1] = 0.000000;
+result.matrix[0][2] = 0.000000;
+result.matrix[1][0] = 0.000000;
+result.matrix[1][1] = 0.000000;
+result.matrix[1][2] = 0.000000;
+result.matrix[2][0] = 0.000000;
+result.matrix[2][1] = 0.000000;
+result.matrix[2][2] = 0.000000;
+fail_if(!s21_eq_matrix(&result, &s21_ans));
+s21_remove_matrix(&matrixA);
+s21_remove_matrix(&matrixB);
+s21_remove_matrix(&result);
+s21_remove_matrix(&s21_ans);
+
+#Test Sub_Matrix_1
+int r1 = 3, c1 = 3, r2 = 3, c2 = 3;
+matrix_t matrixA = s21_create_matrix(r1, c1);
+matrix_t matrixB = s21_create_matrix(r2, c2);
+matrixA.matrix[0][0] = 1.000000;
+matrixA.matrix[0][1] = 1.000000;
+matrixA.matrix[0][2] = 5.000000;
+matrixA.matrix[1][0] = 3.000000;
+matrixA.matrix[1][1] = 13.000000;
+matrixA.matrix[1][2] = 5.000000;
+matrixA.matrix[2][0] = 3.000000;
+matrixA.matrix[2][1] = 3.000000;
+matrixA.matrix[2][2] = -3.000000;
+
+matrixB.matrix[0][0] = 1.000000;
+matrixB.matrix[0][1] = 2.000000;
+matrixB.matrix[0][2] = 33.000000;
+matrixB.matrix[1][0] = 324.000000;
+matrixB.matrix[1][1] = 4.000000;
+matrixB.matrix[1][2] = 2.000000;
+matrixB.matrix[2][0] = 5.000000;
+matrixB.matrix[2][1] = 2.000000;
+matrixB.matrix[2][2] = 12.000000;
+matrix_t result = s21_create_matrix(r1, c1);
+matrix_t s21_ans = s21_sub_matrix(&matrixA, &matrixB);
+result.matrix[0][0] = 0.000000;
+result.matrix[0][1] = -1.000000;
+result.matrix[0][2] = -28.000000;
+result.matrix[1][0] = -321.000000;
+result.matrix[1][1] = 9.000000;
+result.matrix[1][2] = 3.000000;
+result.matrix[2][0] = -2.000000;
+result.matrix[2][1] = 1.000000;
+result.matrix[2][2] = -15.000000;
+fail_if(!s21_eq_matrix(&result, &s21_ans));
+s21_remove_matrix(&matrixA);
+s21_remove_matrix(&matrixB);
+s21_remove_matrix(&result);
+s21_remove_matrix(&s21_ans);
+
+#Test Sub_Matrix_2
+int r1 = 3, c1 = 4, r2 = 3, c2 = 4;
+matrix_t matrixA = s21_create_matrix(r1, c1);
+matrix_t matrixB = s21_create_matrix(r2, c2);
+matrixA.matrix[0][0] = 1.000000;
+matrixA.matrix[0][1] = 1.000000;
+matrixA.matrix[0][2] = 5.000000;
+matrixA.matrix[0][3] = 3.000000;
+matrixA.matrix[1][0] = 13.000000;
+matrixA.matrix[1][1] = 5.000000;
+matrixA.matrix[1][2] = 3.000000;
+matrixA.matrix[1][3] = 3.000000;
+matrixA.matrix[2][0] = -3.000000;
+matrixA.matrix[2][1] = 34.000000;
+matrixA.matrix[2][2] = 45.000000;
+matrixA.matrix[2][3] = 3.000000;
+
+matrixB.matrix[0][0] = 0.000000;
+matrixB.matrix[0][1] = 0.000000;
+matrixB.matrix[0][2] = 0.000000;
+matrixB.matrix[0][3] = 0.000000;
+matrixB.matrix[1][0] = 0.000000;
+matrixB.matrix[1][1] = 0.000000;
+matrixB.matrix[1][2] = 0.000000;
+matrixB.matrix[1][3] = 0.000000;
+matrixB.matrix[2][0] = 0.000000;
+matrixB.matrix[2][1] = 0.000000;
+matrixB.matrix[2][2] = 0.000000;
+matrixB.matrix[2][3] = 0.000000;
+matrix_t result = s21_create_matrix(r1, c1);
+matrix_t s21_ans = s21_sub_matrix(&matrixA, &matrixB);
+result.matrix[0][0] = 1.000000;
+result.matrix[0][1] = 1.000000;
+result.matrix[0][2] = 5.000000;
+result.matrix[0][3] = 3.000000;
+result.matrix[1][0] = 13.000000;
+result.matrix[1][1] = 5.000000;
+result.matrix[1][2] = 3.000000;
+result.matrix[1][3] = 3.000000;
+result.matrix[2][0] = -3.000000;
+result.matrix[2][1] = 34.000000;
+result.matrix[2][2] = 45.000000;
+result.matrix[2][3] = 3.000000;
+fail_if(!s21_eq_matrix(&result, &s21_ans));
+s21_remove_matrix(&matrixA);
+s21_remove_matrix(&matrixB);
+s21_remove_matrix(&result);
+s21_remove_matrix(&s21_ans);
+
+#Test Sub_Matrix_3
+int r1 = 3, c1 = 4, r2 = 3, c2 = 3;
+matrix_t matrixA = s21_create_matrix(r1, c1);
+matrix_t matrixB = s21_create_matrix(r2, c2);
+matrixA.matrix[0][0] = 1.000000;
+matrixA.matrix[0][1] = 1.000000;
+matrixA.matrix[0][2] = 5.000000;
+matrixA.matrix[0][3] = 3.000000;
+matrixA.matrix[1][0] = 13.000000;
+matrixA.matrix[1][1] = 5.000000;
+matrixA.matrix[1][2] = 3.000000;
+matrixA.matrix[1][3] = 3.000000;
+matrixA.matrix[2][0] = -3.000000;
+matrixA.matrix[2][1] = 34.000000;
+matrixA.matrix[2][2] = 45.000000;
+matrixA.matrix[2][3] = 3.000000;
+Set_matrix_type(&matrixA);
+matrixB.matrix[0][0] = 33.000000;
+matrixB.matrix[0][1] = 5.000000;
+matrixB.matrix[0][2] = 4.000000;
+matrixB.matrix[1][0] = 3.000000;
+matrixB.matrix[1][1] = 53.000000;
+matrixB.matrix[1][2] = 5.000000;
+matrixB.matrix[2][0] = 35.000000;
+matrixB.matrix[2][1] = 53.000000;
+matrixB.matrix[2][2] = 3.000000;
+Set_matrix_type(&matrixB);
+matrix_t s21_ans = s21_sub_matrix(&matrixA, &matrixB);
+int res = s21_ans.matrix_type == INCORRECT_MATRIX;
+fail_if(!res);
+s21_remove_matrix(&matrixA);
+s21_remove_matrix(&matrixB);
+s21_remove_matrix(&s21_ans);
+
+#Test Mult_Number_1
+int r1 = 3, c1 = 4;
+matrix_t matrixA = s21_create_matrix(r1, c1);
+matrixA.matrix[0][0] = 1.400000;
+matrixA.matrix[0][1] = 1.000000;
+matrixA.matrix[0][2] = 5.000000;
+matrixA.matrix[0][3] = 3.000000;
+matrixA.matrix[1][0] = 13.000000;
+matrixA.matrix[1][1] = 5.400000;
+matrixA.matrix[1][2] = 3.000000;
+matrixA.matrix[1][3] = 3.000000;
+matrixA.matrix[2][0] = -3.000000;
+matrixA.matrix[2][1] = 34.000000;
+matrixA.matrix[2][2] = 460.000000;
+matrixA.matrix[2][3] = 3.000000;
+
+matrix_t result = s21_create_matrix(r1, c1);
+matrix_t s21_ans = s21_mult_number(&matrixA, 5);
+result.matrix[0][0] = 7.000000;
+result.matrix[0][1] = 5.000000;
+result.matrix[0][2] = 25.000000;
+result.matrix[0][3] = 15.000000;
+result.matrix[1][0] = 65.000000;
+result.matrix[1][1] = 27.000000;
+result.matrix[1][2] = 15.000000;
+result.matrix[1][3] = 15.000000;
+result.matrix[2][0] = -15.000000;
+result.matrix[2][1] = 170.000000;
+result.matrix[2][2] = 2300.000000;
+result.matrix[2][3] = 15.000000;
+fail_if(!s21_eq_matrix(&result, &s21_ans));
+s21_remove_matrix(&matrixA);
+s21_remove_matrix(&s21_ans);
+s21_remove_matrix(&result);
+
+#Test Mult_Matrix_1
+int r1 = 3, c1 = 3, r2 = 3, c2 = 3;
+matrix_t matrixA = s21_create_matrix(r1, c1);
+matrix_t matrixB = s21_create_matrix(r2, c2);
+matrixA.matrix[0][0] = 1.400000;
+matrixA.matrix[0][1] = 1.000000;
+matrixA.matrix[0][2] = 5.000000;
+matrixA.matrix[1][0] = 3.000000;
+matrixA.matrix[1][1] = 13.000000;
+matrixA.matrix[1][2] = 5.400000;
+matrixA.matrix[2][0] = 3.000000;
+matrixA.matrix[2][1] = 3.000000;
+matrixA.matrix[2][2] = -3.000000;
+
+matrixB.matrix[0][0] = 33.000000;
+matrixB.matrix[0][1] = 5.000000;
+matrixB.matrix[0][2] = 4.000000;
+matrixB.matrix[1][0] = 3.000000;
+matrixB.matrix[1][1] = 53.000000;
+matrixB.matrix[1][2] = 5.000000;
+matrixB.matrix[2][0] = 35.000000;
+matrixB.matrix[2][1] = 53.000000;
+matrixB.matrix[2][2] = 3.000000;
+matrix_t result = s21_create_matrix(r1, c1);
+matrix_t s21_ans = s21_mult_matrix(&matrixA, &matrixB);
+result.matrix[0][0] = 224.200000;
+result.matrix[0][1] = 325.000000;
+result.matrix[0][2] = 25.600000;
+result.matrix[1][0] = 327.000000;
+result.matrix[1][1] = 990.200000;
+result.matrix[1][2] = 93.200000;
+result.matrix[2][0] = 3.000000;
+result.matrix[2][1] = 15.000000;
+result.matrix[2][2] = 18.000000;
+fail_if(!s21_eq_matrix(&result, &s21_ans));
+s21_remove_matrix(&matrixA);
+s21_remove_matrix(&matrixB);
+s21_remove_matrix(&result);
+s21_remove_matrix(&s21_ans);
+
+#Test Mult_Matrix_2
+int r1 = 3, c1 = 3, r2 = 3, c2 = 3;
+matrix_t matrixA = s21_create_matrix(r1, c1);
+matrix_t matrixB = s21_create_matrix(r2, c2);
+matrixA.matrix[0][0] = 1.000000;
+matrixA.matrix[0][1] = 1.000000;
+matrixA.matrix[0][2] = 1.000000;
+matrixA.matrix[1][0] = 1.000000;
+matrixA.matrix[1][1] = 1.000000;
+matrixA.matrix[1][2] = 1.000000;
+matrixA.matrix[2][0] = 1.000000;
+matrixA.matrix[2][1] = 1.000000;
+matrixA.matrix[2][2] = 1.000000;
+
+matrixB.matrix[0][0] = 1.000000;
+matrixB.matrix[0][1] = 0.000000;
+matrixB.matrix[0][2] = 0.000000;
+matrixB.matrix[1][0] = 0.000000;
+matrixB.matrix[1][1] = 1.000000;
+matrixB.matrix[1][2] = 0.000000;
+matrixB.matrix[2][0] = 0.000000;
+matrixB.matrix[2][1] = 0.000000;
+matrixB.matrix[2][2] = 1.000000;
+matrix_t result = s21_create_matrix(r1, c1);
+matrix_t s21_ans = s21_mult_matrix(&matrixA, &matrixB);
+result.matrix[0][0] = 1.000000;
+result.matrix[0][1] = 1.000000;
+result.matrix[0][2] = 1.000000;
+result.matrix[1][0] = 1.000000;
+result.matrix[1][1] = 1.000000;
+result.matrix[1][2] = 1.000000;
+result.matrix[2][0] = 1.000000;
+result.matrix[2][1] = 1.000000;
+result.matrix[2][2] = 1.000000;
+fail_if(!s21_eq_matrix(&result, &s21_ans));
+s21_remove_matrix(&matrixA);
+s21_remove_matrix(&matrixB);
+s21_remove_matrix(&result);
+s21_remove_matrix(&s21_ans);
+
+#Test Mult_Matrix_3
+int r1 = 3, c1 = 3, r2 = 3, c2 = 3;
+matrix_t matrixA = s21_create_matrix(r1, c1);
+matrix_t matrixB = s21_create_matrix(r2, c2);
+matrixA.matrix[0][0] = 1.000000;
+matrixA.matrix[0][1] = 1.000000;
+matrixA.matrix[0][2] = 1.000000;
+matrixA.matrix[1][0] = 1.000000;
+matrixA.matrix[1][1] = 1.000000;
+matrixA.matrix[1][2] = 1.000000;
+matrixA.matrix[2][0] = 1.000000;
+matrixA.matrix[2][1] = 1.000000;
+matrixA.matrix[2][2] = 1.000000;
+
+matrixB.matrix[0][0] = 1.000000;
+matrixB.matrix[0][1] = 0.000000;
+matrixB.matrix[0][2] = 0.000000;
+matrixB.matrix[1][0] = 0.000000;
+matrixB.matrix[1][1] = 1.000000;
+matrixB.matrix[1][2] = 0.000000;
+matrixB.matrix[2][0] = 0.000000;
+matrixB.matrix[2][1] = 0.000000;
+matrixB.matrix[2][2] = 1.000000;
+matrix_t result = s21_create_matrix(r1, c1);
+matrix_t s21_ans = s21_mult_matrix(&matrixB, &matrixA);
+result.matrix[0][0] = 1.000000;
+result.matrix[0][1] = 1.000000;
+result.matrix[0][2] = 1.000000;
+result.matrix[1][0] = 1.000000;
+result.matrix[1][1] = 1.000000;
+result.matrix[1][2] = 1.000000;
+result.matrix[2][0] = 1.000000;
+result.matrix[2][1] = 1.000000;
+result.matrix[2][2] = 1.000000;
+fail_if(!s21_eq_matrix(&result, &s21_ans));
+s21_remove_matrix(&matrixA);
+s21_remove_matrix(&matrixB);
+s21_remove_matrix(&result);
+s21_remove_matrix(&s21_ans);
+
+#Test Transpose_Matrix_1
+int r1 = 3, c1 = 4;
+matrix_t matrixA = s21_create_matrix(r1, c1);
+matrixA.matrix[0][0] = 1.400000;
+matrixA.matrix[0][1] = 1.000000;
+matrixA.matrix[0][2] = 5.000000;
+matrixA.matrix[0][3] = 3.000000;
+matrixA.matrix[1][0] = 13.000000;
+matrixA.matrix[1][1] = 5.400000;
+matrixA.matrix[1][2] = 3.000000;
+matrixA.matrix[1][3] = 3.000000;
+matrixA.matrix[2][0] = -3.000000;
+matrixA.matrix[2][1] = 34.000000;
+matrixA.matrix[2][2] = 460.000000;
+matrixA.matrix[2][3] = 3.000000;
+Set_matrix_type(&matrixA);
+
+matrix_t result = s21_create_matrix(c1, r1);
+matrix_t s21_ans = s21_transpose(&matrixA);
+result.matrix[0][0] = 1.400000;
+result.matrix[0][1] = 13.000000;
+result.matrix[0][2] = -3.000000;
+result.matrix[1][0] = 1.000000;
+result.matrix[1][1] = 5.400000;
+result.matrix[1][2] = 34.000000;
+result.matrix[2][0] = 5.000000;
+result.matrix[2][1] = 3.000000;
+result.matrix[2][2] = 460.000000;
+result.matrix[3][0] = 3.000000;
+result.matrix[3][1] = 3.000000;
+result.matrix[3][2] = 3.000000;
+fail_if(!s21_eq_matrix(&result, &s21_ans));
+s21_remove_matrix(&matrixA);
+s21_remove_matrix(&s21_ans);
+s21_remove_matrix(&result);
+
+#Test Transpose_Matrix_2
+int r1 = 3, c1 = 4;
+matrix_t matrixB = s21_create_matrix(r1, c1);
+Set_matrix_type(&matrixB);
+matrix_t result = s21_create_matrix(c1, r1);
+matrix_t s21_ans = s21_transpose(&matrixB);
+fail_if(!s21_eq_matrix(&result, &s21_ans));
+s21_remove_matrix(&s21_ans);
+s21_remove_matrix(&result);
+s21_remove_matrix(&matrixB);
+
+#Test Transpose_Matrix_3
+int r1 = 3, c1 = 4;
+matrix_t matrixB = s21_create_matrix(r1, c1);
+matrixB.matrix_type = INCORRECT_MATRIX;
+matrix_t s21_ans = s21_transpose(&matrixB);
+int res = (s21_ans.matrix_type == INCORRECT_MATRIX);
+fail_if(!res);
+s21_remove_matrix(&s21_ans);
+s21_remove_matrix(&matrixB);
+
+#test sum_1
+matrix_t A = s21_create_matrix(3, 3);
+init_matrix(&A, "1 2 3 4 5 6 7 8 9");
+matrix_t B = s21_create_matrix(3, 3);
+init_matrix(&B, "9 8 7 6 5 4 3 2 1");
+matrix_t C = s21_sum_matrix(&A, &B);
+matrix_t answer = s21_create_matrix(3, 3);
+init_matrix(&answer, "10 10 10 10 10 10 10 10 10");
+int res = s21_eq_matrix(&answer, &C);
+s21_remove_matrix(&A);
+s21_remove_matrix(&B);
+s21_remove_matrix(&C);
+s21_remove_matrix(&answer);
+fail_if(!res);
+
+#test sum_2
+matrix_t A = s21_create_matrix(1, 1);
+init_matrix(&A, "1.000005");
+matrix_t B = s21_create_matrix(1, 1);
+init_matrix(&B, "5.000005");
+matrix_t C = s21_sum_matrix(&A, &B);
+matrix_t answer = s21_create_matrix(1, 1);
+init_matrix(&answer, "6.00001");
+int res = s21_eq_matrix(&answer, &C);
+s21_remove_matrix(&A);
+s21_remove_matrix(&B);
+s21_remove_matrix(&C);
+s21_remove_matrix(&answer);
+fail_if(!res);
+
+#test sum_3
+matrix_t A = s21_create_matrix(2, 2);
+init_matrix(&A, "1.000005 3 5 7");
+matrix_t B = s21_create_matrix(1, 1);
+init_matrix(&B, "5.000005");
+matrix_t C = s21_sum_matrix(&A, &B);
+matrix_t answer = {NULL, 0, 0, INCORRECT_MATRIX};
+int res = s21_eq_matrix(&answer, &C);
+s21_remove_matrix(&A);
+s21_remove_matrix(&B);
+s21_remove_matrix(&C);
+s21_remove_matrix(&answer);
+fail_if(res);
+
+#test sum_4
+matrix_t A = s21_create_matrix(2, 2);
+init_matrix(&A, "1.000005 3 5 7");
+matrix_t B = s21_create_matrix(1, 1);
+init_matrix(&B, "5.000005");
+matrix_t C = s21_sum_matrix(&A, &B);
+int res = C.matrix_type;
+s21_remove_matrix(&A);
+s21_remove_matrix(&B);
+s21_remove_matrix(&C);
+fail_if(res != 1);
+
+#test sub_1
+matrix_t A = s21_create_matrix(3, 3);
+init_matrix(&A, "1 2 3 4 5 6 7 8 9");
+matrix_t B = s21_create_matrix(3, 3);
+init_matrix(&B, "9 8 7 6 5 4 3 2 1");
+matrix_t C = s21_sub_matrix(&A, &B);
+matrix_t answer = s21_create_matrix(3, 3);
+init_matrix(&answer, "-8 -6 -4 -2 0 2 4 6 8");
+int res = s21_eq_matrix(&answer, &C);
+s21_remove_matrix(&A);
+s21_remove_matrix(&B);
+s21_remove_matrix(&C);
+s21_remove_matrix(&answer);
+fail_if(!res);
+
+#test sub_2
+matrix_t A = s21_create_matrix(7, 7);
+init_matrix(&A,
+            "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 "
+            "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1");
+matrix_t B = s21_create_matrix(7, 7);
+init_matrix(&B,
+            "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "
+            "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0");
+matrix_t C = s21_sub_matrix(&A, &B);
+matrix_t answer = s21_create_matrix(7, 7);
+init_matrix(&answer,
+            "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 "
+            "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1");
+int res = s21_eq_matrix(&answer, &C);
+s21_remove_matrix(&A);
+s21_remove_matrix(&B);
+s21_remove_matrix(&C);
+s21_remove_matrix(&answer);
+fail_if(!res);
+
+#test sub_3
+matrix_t A = s21_create_matrix(2, 2);
+init_matrix(&A, "1.000005 3 5 7");
+matrix_t B = s21_create_matrix(1, 1);
+init_matrix(&B, "5.000005");
+matrix_t C = s21_sub_matrix(&A, &B);
+matrix_t answer = {NULL, 0, 0, INCORRECT_MATRIX};
+int res = s21_eq_matrix(&answer, &C);
+s21_remove_matrix(&A);
+s21_remove_matrix(&B);
+s21_remove_matrix(&C);
+s21_remove_matrix(&answer);
+fail_if(res);
+
+#test sub_4
+matrix_t A = s21_create_matrix(2, 2);
+init_matrix(&A, "1.000005 3 5 7");
+matrix_t B = s21_create_matrix(1, 1);
+init_matrix(&B, "5.000005");
+matrix_t C = s21_sub_matrix(&A, &B);
+int res = C.matrix_type;
+s21_remove_matrix(&A);
+s21_remove_matrix(&B);
+s21_remove_matrix(&C);
+fail_if(res != 1);
+
+#test type_matrix_1
+matrix_t A = s21_create_matrix(7, 7);
+init_matrix(&A,
+            "1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 "
+            "0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1");
+int res = A.matrix_type;
+s21_remove_matrix(&A);
+fail_if(res != 2);
+
+#test type_matrix_2
+matrix_t A = s21_create_matrix(7, 7);
+init_matrix(&A,
+            "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "
+            "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0");
+int res = A.matrix_type;
+s21_remove_matrix(&A);
+fail_if(res != 3);
+
+#test type_matrix_3
+matrix_t A = s21_create_matrix(7, 7);
+init_matrix(&A,
+            "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "
+            "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0");
+int res = A.matrix_type;
+s21_remove_matrix(&A);
+fail_if(res != 3);
+
+#test s21_mult_number_1
+matrix_t A = s21_create_matrix(2, 2);
+init_matrix(&A, "1.000005 3 5 7");
+matrix_t C = s21_mult_number(&A, 7);
+matrix_t answer = s21_create_matrix(2, 2);
+init_matrix(&answer, "7.000035 21 35 49");
+int res = s21_eq_matrix(&answer, &C);
+s21_remove_matrix(&A);
+s21_remove_matrix(&C);
+s21_remove_matrix(&answer);
+fail_if(!res);
+
+#test s21_mult_number_2
+matrix_t A = s21_create_matrix(4, 4);
+init_matrix(&A, "1.000005 3 5 7 0.00003 1 55 -33 12 33 12 11 0 33 12 1");
+matrix_t C = s21_mult_number(&A, 0.0001);
+matrix_t answer = s21_create_matrix(4, 4);
+init_matrix(&answer,
+            "0.0001000005 0.0003 0.0005 0.0007 0.000000003	0.0001 0.0055 "
+            "-0.0033 0.0012 0.0033	0.0012 0.0011 0	0.0033 0.0012 0.0001");
+int res = s21_eq_matrix(&answer, &C);
+s21_remove_matrix(&A);
+s21_remove_matrix(&C);
+s21_remove_matrix(&answer);
+fail_if(!res);
+
+#test s21_mult_number_3
+matrix_t A = s21_create_matrix(1, 1);
+init_matrix(&A, "1");
+fail_if(A.matrix_type != IDENTITY_MATRIX);
+matrix_t C = s21_mult_number(&A, 0);
+matrix_t answer = s21_create_matrix(1, 1);
+init_matrix(&answer, "0");
+int res = s21_eq_matrix(&answer, &C);
+s21_remove_matrix(&A);
+s21_remove_matrix(&C);
+s21_remove_matrix(&answer);
+fail_if(!res);
+
+#test s21_mult_matrix_1
+matrix_t A = s21_create_matrix(3, 2);
+matrix_t B = s21_create_matrix(1, 3);
+init_matrix(&A, "1 2 3 4 5 6");
+init_matrix(&B, "6 5 4");
+matrix_t C = s21_mult_matrix(&A, &B);
+int res = (C.matrix_type == INCORRECT_MATRIX);
+s21_remove_matrix(&A);
+s21_remove_matrix(&B);
+s21_remove_matrix(&C);
+fail_if(!res);
+
+#test s21_mult_matrix_3
+matrix_t A = s21_create_matrix(1, 1);
+matrix_t B = s21_create_matrix(1, 1);
+init_matrix(&A, "-30");
+init_matrix(&B, "-0.03333333334");
+matrix_t C = s21_mult_matrix(&A, &B);
+matrix_t answer = s21_create_matrix(1, 1);
+init_matrix(&answer, "1");
+fail_if(answer.matrix_type != IDENTITY_MATRIX);
+int res = s21_eq_matrix(&answer, &C);
+s21_remove_matrix(&A);
+s21_remove_matrix(&B);
+s21_remove_matrix(&C);
+s21_remove_matrix(&answer);
+fail_if(!res);
+
+#test s21_transpose_1
+matrix_t A = s21_create_matrix(1, 1);
+init_matrix(&A, "5");
+matrix_t B = s21_transpose(&A);
+matrix_t answer = s21_create_matrix(1, 1);
+init_matrix(&answer, "5");
+int res = s21_eq_matrix(&answer, &B);
+s21_remove_matrix(&A);
+s21_remove_matrix(&B);
+s21_remove_matrix(&answer);
+fail_if(!res);
+
+#test s21_transpose_2
+matrix_t A = s21_create_matrix(2, 3);
+init_matrix(&A, "5 1 0 2 2 3");
+matrix_t B = s21_transpose(&A);
+matrix_t answer = s21_create_matrix(3, 2);
+init_matrix(&answer, "5 2 1 2 0 3");
+int res = s21_eq_matrix(&answer, &B);
+s21_remove_matrix(&A);
+s21_remove_matrix(&B);
+s21_remove_matrix(&answer);
+fail_if(!res);
+
+#Test Equal_matrix_1
+int r1 = 3, c1 = 3, r2 = 3, c2 = 3;
+matrix_t matrixA = s21_create_matrix(r1, c1);
+matrix_t matrixB = s21_create_matrix(r2, c2);
+matrixA.matrix[0][0] = 1.000000;
+matrixA.matrix[0][1] = 1.000000;
+matrixA.matrix[0][2] = 5.000000;
+matrixA.matrix[1][0] = 3.000000;
+matrixA.matrix[1][1] = 13.000000;
+matrixA.matrix[1][2] = 5.000000;
+matrixA.matrix[2][0] = 3.000000;
+matrixA.matrix[2][1] = 3.000000;
+matrixA.matrix[2][2] = -3.000000;
+
+matrixB.matrix[0][0] = 1.00000022;
+matrixB.matrix[0][1] = 1.000000;
+matrixB.matrix[0][2] = 5.000000;
+matrixB.matrix[1][0] = 3.000000;
+matrixB.matrix[1][1] = 13.000000;
+matrixB.matrix[1][2] = 5.000000;
+matrixB.matrix[2][0] = 3.000000;
+matrixB.matrix[2][1] = 3.000000;
+matrixB.matrix[2][2] = -3.000000;
+int res = s21_eq_matrix(&matrixA, &matrixB);
+fail_if(res);
+s21_remove_matrix(&matrixA);
+s21_remove_matrix(&matrixB);
+
+#test s21_mult_number_4
+matrix_t matrixA = s21_create_matrix(1, 1);
+matrixA.matrix_type = INCORRECT_MATRIX;
+matrix_t s21_ans = s21_mult_number(&matrixA, 5.5);
+int res = (s21_ans.matrix_type == INCORRECT_MATRIX);
+fail_if(!res);
+s21_remove_matrix(&matrixA);
+s21_remove_matrix(&s21_ans);
+
+#test inverse_matrix_1
+matrix_t A = s21_create_matrix(2, 2);
+init_matrix(&A, "12.33 -0.99 1.75 -2.15");
+matrix_t B = s21_inverse_matrix(&A);
+matrix_t answer = s21_create_matrix(2, 2);
+init_matrix(&answer, "0.08677402 -0.0399564 0.07063 -0.4976389");
+int res = s21_eq_matrix(&answer, &B);
+s21_remove_matrix(&A);
+s21_remove_matrix(&B);
+s21_remove_matrix(&answer);
+fail_if(!res);
+
+#test inverse_matrix_2
+matrix_t A = s21_create_matrix(4, 4);
+init_matrix(&A, "1 -4 1 2 -1 4 4 1 3 3 3 4 2 5 2 -1");
+matrix_t B = s21_inverse_matrix(&A);
+matrix_t answer = s21_create_matrix(4, 4);
+init_matrix(&answer,
+            "0.1591836 -0.2 0.0367346 0.26530612 -0.2244897 0.0 0.1020408 "
+            "-0.0408163 0.31020408 0.2 -0.1591836 0.18367347 -0.18367347 0.0 "
+            "0.2653061 -0.3061224");
+int res = s21_eq_matrix(&answer, &B);
+s21_remove_matrix(&A);
+s21_remove_matrix(&B);
+s21_remove_matrix(&answer);
+fail_if(!res);
+
+#test inverse_matrix_3
+matrix_t A = s21_create_matrix(2, 3);
+matrix_t B = s21_inverse_matrix(&A);
+int s21_result = (B.matrix_type == INCORRECT_MATRIX);
+s21_remove_matrix(&A);
+s21_remove_matrix(&B);
+fail_if(!s21_result);
+
+#test inverse_matrix_4
+matrix_t A = s21_create_matrix(2, 2);
+matrix_t B = s21_inverse_matrix(&A);
+int s21_result = (B.matrix_type == INCORRECT_MATRIX);
+s21_remove_matrix(&A);
+s21_remove_matrix(&B);
+fail_if(!s21_result);
+
+#test s21_determinant_1
+matrix_t A = s21_create_matrix(1, 1);
+init_matrix(&A, "5");
+double s21_result = s21_determinant(&A);
+double answer = 5;
+fail_if(answer != s21_result);
+s21_remove_matrix(&A);
+
+#test s21_determinant_2
+int r1 = 2, c1 = 3;
+matrix_t matrixA = s21_create_matrix(r1, c1);
+matrixA.matrix[0][0] = 1.000000;
+matrixA.matrix[0][1] = 1.000000;
+matrixA.matrix[0][2] = 5.000000;
+matrixA.matrix[1][0] = 3.000000;
+matrixA.matrix[1][1] = 13.000000;
+matrixA.matrix[1][2] = 5.000000;
+
+double s21_result = s21_determinant(&matrixA);
+fail_if(s21_result == s21_result);
+s21_remove_matrix(&matrixA);
+
+#test s21_calc_complements_3
+matrix_t A = s21_create_matrix(2, 2);
+init_matrix(&A, "-100 2777 -3.2123 10000.22");
+matrix_t B = s21_calc_complements(&A);
+matrix_t answer = s21_create_matrix(2, 2);
+init_matrix(&answer, "10000.22 3.2123 -2777 -100");
+int res = s21_eq_matrix(&answer, &B);
+s21_remove_matrix(&A);
+s21_remove_matrix(&B);
+s21_remove_matrix(&answer);
+fail_if(!res);

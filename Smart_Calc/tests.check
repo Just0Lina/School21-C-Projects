@@ -1,0 +1,270 @@
+#include <check.h>
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+#include "s21_smartCalc.h"
+
+
+#Test test_1
+char input[MAXSTRLEN] = {"-2+5"};
+double ans = -2+5;
+int x = 0;
+double s21_ans = Calculator(input, x);
+int res = s21_ans == ans;
+fail_if(!res);
+
+#Test test_2
+char input[MAXSTRLEN] = {"-sqrt(100)"};
+double ans = -sqrt(100);
+ int x = 0;
+double s21_ans = Calculator(input, x);
+int res = s21_ans == ans;
+fail_if(!res);
+
+#Test test_3
+char input[MAXSTRLEN] = {"(20*(-2))"};
+double ans = (20*(-2));
+ int x = 0;
+double s21_ans = Calculator(input, x);
+int res = s21_ans == ans;
+fail_if(!res);
+
+#Test test_4
+char input[MAXSTRLEN] = {"3*sqrt(25)"};
+double ans = 3*sqrt(25);
+ int x = 0;
+double s21_ans = Calculator(input, x);
+int res = s21_ans == ans;
+fail_if(!res);
+
+#Test test_5
+char input[MAXSTRLEN] = {"sqrt((24*1)+1)"};
+double ans = sqrt((24*1)+1);
+ int x = 0;
+double s21_ans = Calculator(input, x);
+int res = s21_ans == ans;
+fail_if(!res);
+
+#Test test_6
+char input[MAXSTRLEN] = {"3+(-sqrt(100))"};
+double ans = 3+(-sqrt(100));
+ int x = 0;
+double s21_ans = Calculator(input, x);
+int res = s21_ans == ans;
+fail_if(!res);
+
+#Test test_7
+char input[MAXSTRLEN] = {"-(-(-2))"};
+double ans = -(-(-2));
+ int x = 0;
+double s21_ans = Calculator(input, x);
+int res = s21_ans == ans;
+fail_if(!res);
+
+#Test test_8
+char input[MAXSTRLEN] = {"sin(-2)"};
+double ans = sin(-2);
+ int x = 0;
+double s21_ans = Calculator(input, x);
+int res = s21_ans == ans;
+fail_if(!res);
+
+#Test test_9
+char input[MAXSTRLEN] = {"-2^2"};
+double ans = -2^2;
+ int x = 0;
+double s21_ans = Calculator(input, x);
+int res = s21_ans == ans;
+fail_if(!res);
+
+#Test test_10
+char input[MAXSTRLEN] = {"-(-(-log(100000)))"};
+double ans = -(-(-log10(100000)));
+ int x = 0;
+double s21_ans = Calculator(input, x);
+int res = s21_ans == ans;
+fail_if(!res);
+
+#Test test_11
+char input[MAXSTRLEN] = {"22-(-2^3)"};
+double ans = 22-(-pow(2,3));
+ int x = 0;
+double s21_ans = Calculator(input, x);
+int res = s21_ans == ans;
+fail_if(!res);
+
+#Test test_12
+char input[MAXSTRLEN] = {"2+2.4"};
+ int x = 0;
+double s21_ans = Calculator(input, x);
+double ans =2+2.4;
+int res = s21_ans == ans;
+fail_if(!res);
+
+#Test test_13
+char input[MAXSTRLEN] = {"atan(0.5)"};
+ int x = 0;
+double s21_ans = Calculator(input, x);
+double ans = atan(0.5);
+int res = s21_ans - ans < 1e-7;
+fail_if(!res);
+
+#Test test_14
+char input[MAXSTRLEN] = {"2/(1+2)"};
+ int x = 0;
+double s21_ans = Calculator(input, x);
+double ans = 2.0/(1+2);
+
+int res = s21_ans == ans;
+fail_if(!res);
+
+#Test test_15
+char input[MAXSTRLEN] = {"1000%994"};
+ int x = 0;
+double s21_ans = Calculator(input, x);
+double ans = fmod(1000,994);
+int res = s21_ans == ans;
+fail_if(!res);
+
+#Test test_16
+char input[MAXSTRLEN] = {"+1000%994"};
+ int x = 0;
+double s21_ans = Calculator(input, x);
+double ans = fmod(1000,994);
+int res = s21_ans == ans;
+fail_if(!res);
+
+#Test test_17
+char input[MAXSTRLEN] = {"2-cos(3)"};
+ int x = 0;
+double s21_ans = Calculator(input, x);
+double ans = 2-cos(3);
+int res = s21_ans == ans;
+fail_if(!res);
+
+#Test test_18
+char input[MAXSTRLEN] = {"2^3^4"};
+ int x = 0;
+double s21_ans = Calculator(input, x);
+double ans = pow(pow(2,3),4);
+int res = s21_ans == ans;
+fail_if(!res);
+
+#Test test_19
+char input[MAXSTRLEN] = {"tan(asin(1))"};
+ int x = 0;
+double s21_ans = Calculator(input, x);
+double ans = tan(asin(1));
+int res = s21_ans == ans;
+fail_if(!res);
+
+#Test test_20
+char input[MAXSTRLEN] = {"ln(acos(0))"};
+ int x = 0;
+double s21_ans = Calculator(input, x);
+double ans = log(acos(0));
+int res = s21_ans == ans;
+fail_if(!res);
+
+#Test test_21
+char input[MAXSTRLEN] = {"2*3%4"};
+ int x = 0;
+double s21_ans = Calculator(input, x);
+double ans = fmod(2*3,4);
+int res = s21_ans == ans;
+fail_if(!res);
+
+#Test test_22
+char input[MAXSTRLEN] = {"sin(-2+3)"};
+ int x = 0;
+double s21_ans = Calculator(input, x);
+double ans = sin(-2+3);
+int res = s21_ans == ans;
+fail_if(!res);
+
+#Test test_23
+char input[MAXSTRLEN] = {"-2+3+3"};
+ int x = 0;
+double s21_ans = Calculator(input, x);
+double ans = -2+3+3;
+int res = s21_ans == ans;
+fail_if(!res);
+
+#Test test_24
+char input[MAXSTRLEN] = {"2-(-(-(-(4*log(100)*3/3+100))))"};
+ int x = 0;
+double s21_ans = Calculator(input, x);
+double ans = 2-(-(-(-(4*log10(100)*3.0/3+100))));
+int res = s21_ans == ans;
+fail_if(!res);
+
+
+#Test test_25
+char input[MAXSTRLEN] = {"33-5*x"};
+ int x = 2;
+double s21_ans = Calculator(input, x);
+double ans = 33-5*2;
+int res = s21_ans == ans;
+fail_if(!res);
+
+
+#Test falure_test_1
+char input[MAXSTRLEN] = {"7(+3)"};
+ int x = 0;
+double s21_ans = Calculator(input, x);
+int res = s21_ans == -1;
+fail_if(!res);
+
+#Test falure_test_2
+char input[MAXSTRLEN] = {"*3+3"};
+ int x = 0;
+double s21_ans = Calculator(input, x);
+int res = s21_ans == -1;
+fail_if(!res);
+
+#Test falure_test_3
+char input[MAXSTRLEN] = {"())"};
+ int x = 0;
+double s21_ans = Calculator(input, x);
+int res = s21_ans == -1;
+fail_if(!res);
+
+#Test falure_test_4
+char input[MAXSTRLEN] = {"lod(33)"};
+ int x = 0;
+double s21_ans = Calculator(input, x);
+int res = s21_ans == -1;
+fail_if(!res);
+
+#Test falure_test_5
+char input[MAXSTRLEN] = {"2*+6"};
+ int x = 0;
+double s21_ans = Calculator(input, x);
+int res = s21_ans == -1;
+fail_if(!res);
+
+#Test falure_test_6
+char input[MAXSTRLEN] = {"2/0"};
+ int x = 0;
+double s21_ans = Calculator(input, x);
+int res = s21_ans == -1;
+fail_if(!res);
+
+#Test falure_test_7
+char input[MAXSTRLEN] = {"2/(2-2)"};
+ int x = 0;
+double s21_ans = Calculator(input, x);
+int res = s21_ans == -2;
+fail_if(!res);
+
+
+#Test falure_test_8
+char input[MAXSTRLEN]={'\0'};
+ int x = 0;
+double s21_ans = Calculator(input, x);
+int res = s21_ans == -1;
+fail_if(!res);
+
+
+
