@@ -2,6 +2,7 @@ SRCS = s21_smartCalc.c HelpfulFunc.c SyntaxCheck.c
 OBJS = ${SRCS:.c=.o}
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -g
+BD = ../build/
 OS=$(shell uname)
 ifeq ($(OS), Linux)
 	FLAGS=-lcheck -lm -lsubunit -lrt -lpthread -lm
@@ -13,7 +14,6 @@ endif
 
 INSTALLDIR=../build
 BUILDDIR=../build
-EXECUTABLE=result_file
 ifeq ($(OS), Linux)  
 TMPEXECUTABLE=Calculator
 else ifeq ($(OS), Darwin)
@@ -22,21 +22,19 @@ endif
 	
 all: build
 
-build:
-	mkdir -p $(BUILDDIR)
-	cd $(BUILDDIR) && \
-	qmake ../src && \
-	make && \
-	mv $(TMPEXECUTABLE) $(EXECUTABLE)
+build: clean mk replication
+	cd $(BD); qmake SmartCalc.pro
+	make -C $(BD
 
-install: all
-	cp $(EXECUTABLE) $(HOME)/Desktop/$(EXECUTABLE)
-
+install: build
+	mkdir $(HOME)/Desktop/SmartCalc_v1.0/
+	cp -rf $(BD)SmartCalc.app $(HOME)/Desktop/SmartCalc_v1.0/
+	make clean
 uninstall:
-	rm -rf  $(HOME)/Desktop/$(EXECUTABLE)
+	rm -rf  $(HOME)/Desktop/SmartCalc_v1.0/
 
 dist:
-	cd $(INSTALLDIR); cd ..; tar -cvf Calculator.tar build
+	cd $(BD); cd ..; tar -cvf Calculator.tar build
 
 
 dvi: 
@@ -59,7 +57,7 @@ gcov_report: test
 	@genhtml -o report test.info
 	
 clean:
-	/bin/rm -rf *.o test *.gcno *gcda report *.info *.out s21_smartCalc-test.c CPPLINT.cfg $(BUILDDIR)
+	/bin/rm -rf *.o test *.tar *.gcno *gcda report *.info *.out s21_smartCalc-test.c CPPLINT.cfg $(BUILDDIR)
 
 checks: cppcheck style
 
@@ -71,6 +69,15 @@ cppcheck: tests
 	cppcheck --enable=all --suppress=missingIncludeSystem $(SRCS) check.c 
 leaks: tests
 	${LEAKS}  ./test
+
+mk:
+	mkdir ../build
+
+replication:
+	cp SmartCalc.pro $(BD)
+	cp -R Icons $(BD)
+	cp -R Font $(BD)
+	cp *.c *.h *.cpp *.ui $(BD)
 
 .PHONY: clean s21_smartCalc.a gcov_report unit_test leaks cppcheck style test build
 
