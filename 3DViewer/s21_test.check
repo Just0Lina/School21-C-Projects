@@ -1,0 +1,31 @@
+#include "affine.h"
+#include "filereader.h"
+#include <math.h>
+#define EPS 1e-5
+
+#TEST full_test
+Model *s21_figure=NULL, *standard_figure=NULL;
+s21_figure=(Model*)calloc(1,sizeof(Model));
+standard_figure=(Model*)calloc(1,sizeof(Model));
+FILE *our, *standard;
+our = fopen("test_cube.obj", "rw");
+standard = fopen("transformed_cube.obj", "rw");
+ParsFiles(our, s21_figure);
+ParsFiles(standard, standard_figure);
+fclose(our);
+fclose(standard);
+
+ck_assert_int_eq(s21_figure->vertNumber,standard_figure->vertNumber);
+ck_assert_int_eq(s21_figure->polNumber,standard_figure->polNumber);
+
+ScaleTransform(s21_figure->vertices,s21_figure->vertNumber*3,15,15,15);
+Rotate(s21_figure->vertices,s21_figure->vertNumber*3,M_PI_4,M_PI_4,M_PI_4);
+MoveTransform(s21_figure->vertices,s21_figure->vertNumber*3,3,-5,7);
+
+
+for (int i = 0; i < s21_figure->vertNumber * 3; i++) {
+  ck_assert_int_eq((fabs(s21_figure->vertices[i]-standard_figure->vertices[i]))>EPS,0);
+}
+
+destroyModel(s21_figure);
+destroyModel(standard_figure);

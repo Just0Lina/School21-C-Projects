@@ -1,0 +1,758 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Settings</class>
+ <widget class="QDialog" name="Settings">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>609</width>
+    <height>538</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Settings</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QFrame" name="projLayout">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#projLayout{
+border:1px solid;
+border-radius:15px;
+border-color:qlineargradient(spread:pad, x1:0.492611, y1:0.278409, x2:0.482887, y2:1, stop:0 rgba(152, 71, 255, 255), stop:1 rgba(0, 63, 226, 222));
+}
+
+</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QLabel" name="projectionLabel">
+        <property name="font">
+         <font>
+          <family>Inter</family>
+          <pointsize>24</pointsize>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Projection:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="centralRadio">
+        <property name="font">
+         <font>
+          <family>Inter</family>
+          <pointsize>24</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#centralRadio:indicator{
+width: 12px;
+height:12px;
+border:1px solid #B8B8B8;
+border-radius:7px;
+}
+
+#centralRadio:indicator:checked{
+border-radius:7px;
+background-color:qlineargradient(spread:pad, x1:0.492611, y1:0.278409, x2:0.482887, y2:1, stop:0 rgba(152, 71, 255, 255), stop:1 rgba(0, 63, 226, 222));
+border:1px solid transparent;
+}</string>
+        </property>
+        <property name="text">
+         <string>central</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+        <attribute name="buttonGroup">
+         <string notr="true">projectionGroup</string>
+        </attribute>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="parallelRadio">
+        <property name="font">
+         <font>
+          <family>Inter</family>
+          <pointsize>24</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#parallelRadio:indicator{
+width: 12px;
+height:12px;
+border:1px solid #B8B8B8;
+border-radius:7px;
+}
+
+#parallelRadio:indicator:checked{
+border-radius:7px;
+background-color:qlineargradient(spread:pad, x1:0.492611, y1:0.278409, x2:0.482887, y2:1, stop:0 rgba(152, 71, 255, 255), stop:1 rgba(0, 63, 226, 222));
+border:1px solid transparent;
+}</string>
+        </property>
+        <property name="text">
+         <string>parallel</string>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+        <attribute name="buttonGroup">
+         <string notr="true">projectionGroup</string>
+        </attribute>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="font">
+      <font>
+       <family>Inter</family>
+       <pointsize>24</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Display:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QFrame" name="verticesLayout">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#verticesLayout{
+border:1px solid;
+border-radius:15px;
+border-color:qlineargradient(spread:pad, x1:0.492611, y1:0.278409, x2:0.482887, y2:1, stop:0 rgba(152, 71, 255, 255), stop:1 rgba(0, 63, 226, 222));
+}
+
+</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <item>
+       <widget class="QLabel" name="edgesColorLabel">
+        <property name="font">
+         <font>
+          <family>Inter</family>
+          <pointsize>24</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Edges Color</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="paletteVertices">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>48</width>
+          <height>47</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#paletteVertices{
+background-color:transparent;
+border:0px solid #B8B8B8;
+padding:5px;
+image: url(:/Icons/pallete.svg);
+
+
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="edgesColor">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>40</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#edgesColor
+{
+border:1px solid #B8B8B8;
+border-radius:10px;
+background-color: transparent;
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Minimum</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>100</width>
+          <height>10</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="thicknessLabel">
+        <property name="font">
+         <font>
+          <family>Inter</family>
+          <pointsize>24</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Thickness</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="thickness">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>24</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#thickness {
+border:1px solid #B8B8B8;
+border-radius:15px;
+background: transparent;
+}</string>
+        </property>
+        <property name="buttonSymbols">
+         <enum>QAbstractSpinBox::NoButtons</enum>
+        </property>
+        <property name="suffix">
+         <string extracomment="  px"/>
+        </property>
+        <property name="prefix">
+         <string/>
+        </property>
+        <property name="minimum">
+         <number>1</number>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QFrame" name="typeLayout">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#typeLayout{
+border:1px solid;
+border-radius:15px;
+border-color:qlineargradient(spread:pad, x1:0.492611, y1:0.278409, x2:0.482887, y2:1, stop:0 rgba(152, 71, 255, 255), stop:1 rgba(0, 63, 226, 222));
+}
+
+</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QLabel" name="typeLabel">
+        <property name="font">
+         <font>
+          <family>Inter</family>
+          <pointsize>24</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Type</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="solidRadio">
+        <property name="font">
+         <font>
+          <family>Inter</family>
+          <pointsize>24</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#solidRadio:indicator{
+width: 12px;
+height:12px;
+border:1px solid #B8B8B8;
+border-radius:7px;
+}
+
+#solidRadio:indicator:checked{
+border-radius:7px;
+background-color:qlineargradient(spread:pad, x1:0.492611, y1:0.278409, x2:0.482887, y2:1, stop:0 rgba(152, 71, 255, 255), stop:1 rgba(0, 63, 226, 222));
+border:1px solid transparent;
+}</string>
+        </property>
+        <property name="text">
+         <string>solid</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+        <attribute name="buttonGroup">
+         <string notr="true">typeGroup</string>
+        </attribute>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="dashedRadio">
+        <property name="font">
+         <font>
+          <family>Inter</family>
+          <pointsize>24</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#dashedRadio:indicator{
+width: 12px;
+height:12px;
+border:1px solid #B8B8B8;
+border-radius:7px;
+}
+
+#dashedRadio:indicator:checked{
+border-radius:7px;
+background-color:qlineargradient(spread:pad, x1:0.492611, y1:0.278409, x2:0.482887, y2:1, stop:0 rgba(152, 71, 255, 255), stop:1 rgba(0, 63, 226, 222));
+border:1px solid transparent;
+}</string>
+        </property>
+        <property name="text">
+         <string>dashed</string>
+        </property>
+        <property name="autoExclusive">
+         <bool>true</bool>
+        </property>
+        <attribute name="buttonGroup">
+         <string notr="true">typeGroup</string>
+        </attribute>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QFrame" name="edgesLayout">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#edgesLayout{
+border:1px solid;
+border-radius:15px;
+border-color:qlineargradient(spread:pad, x1:0.492611, y1:0.278409, x2:0.482887, y2:1, stop:0 rgba(152, 71, 255, 255), stop:1 rgba(0, 63, 226, 222));
+}
+
+</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item>
+       <widget class="QLabel" name="vertices">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>24</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Vertices Color</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="paletteEdges">
+        <property name="minimumSize">
+         <size>
+          <width>48</width>
+          <height>47</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#paletteEdges{
+background-color:transparent;
+border:0px solid #B8B8B8;
+padding:5px;
+image: url(:/Icons/pallete.svg);
+
+
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="verticesColor">
+        <property name="minimumSize">
+         <size>
+          <width>40</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#verticesColor{
+border:1px solid #BEBEBE;
+border-radius:10px;
+background-color:transparent;
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="verticesSizeLabel">
+        <property name="font">
+         <font>
+          <family>Inter</family>
+          <pointsize>24</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Size</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="verticesSize">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>24</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#verticesSize {
+border:1px solid #B8B8B8;
+border-radius:15px;
+background: transparent;
+}</string>
+        </property>
+        <property name="buttonSymbols">
+         <enum>QAbstractSpinBox::NoButtons</enum>
+        </property>
+        <property name="prefix">
+         <string extracomment="  px"/>
+        </property>
+        <property name="minimum">
+         <number>1</number>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QFrame" name="methodLayout">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#methodLayout{
+border:1px solid;
+border-radius:15px;
+border-color:qlineargradient(spread:pad, x1:0.492611, y1:0.278409, x2:0.482887, y2:1, stop:0 rgba(152, 71, 255, 255), stop:1 rgba(0, 63, 226, 222));
+}
+
+</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_5">
+      <item>
+       <widget class="QLabel" name="methodLabel">
+        <property name="font">
+         <font>
+          <family>Inter</family>
+          <pointsize>24</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Method</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="noneRadio">
+        <property name="font">
+         <font>
+          <family>Inter</family>
+          <pointsize>24</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#noneRadio:indicator{
+width: 12px;
+height:12px;
+border:1px solid #B8B8B8;
+border-radius:7px;
+}
+
+#noneRadio:indicator:checked{
+border-radius:7px;
+background-color:qlineargradient(spread:pad, x1:0.492611, y1:0.278409, x2:0.482887, y2:1, stop:0 rgba(152, 71, 255, 255), stop:1 rgba(0, 63, 226, 222));
+border:1px solid transparent;
+}</string>
+        </property>
+        <property name="text">
+         <string>none</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="circleRadio">
+        <property name="font">
+         <font>
+          <family>Inter</family>
+          <pointsize>24</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#circleRadio:indicator{
+width: 12px;
+height:12px;
+border:1px solid #B8B8B8;
+border-radius:7px;
+}
+
+#circleRadio:indicator:checked{
+border-radius:7px;
+background-color:qlineargradient(spread:pad, x1:0.492611, y1:0.278409, x2:0.482887, y2:1, stop:0 rgba(152, 71, 255, 255), stop:1 rgba(0, 63, 226, 222));
+border:1px solid transparent;
+}</string>
+        </property>
+        <property name="text">
+         <string>circle</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="squareRadio">
+        <property name="font">
+         <font>
+          <family>Inter</family>
+          <pointsize>24</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#squareRadio:indicator{
+width: 12px;
+height:12px;
+border:1px solid #B8B8B8;
+border-radius:7px;
+}
+
+#squareRadio:indicator:checked{
+border-radius:7px;
+background-color:qlineargradient(spread:pad, x1:0.492611, y1:0.278409, x2:0.482887, y2:1, stop:0 rgba(152, 71, 255, 255), stop:1 rgba(0, 63, 226, 222));
+border:1px solid transparent;
+}</string>
+        </property>
+        <property name="text">
+         <string>square</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_6">
+     <item>
+      <widget class="QLabel" name="backgroundLabel">
+       <property name="font">
+        <font>
+         <family>Inter</family>
+         <pointsize>24</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string>Background:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="paletteBackground">
+       <property name="minimumSize">
+        <size>
+         <width>48</width>
+         <height>47</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#paletteBackground{
+background-color:transparent;
+border:0px solid #B8B8B8;
+padding:5px;
+image: url(:/Icons/pallete.svg);
+
+
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="backgroundColor">
+       <property name="minimumSize">
+        <size>
+         <width>40</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#backgroundColor{
+border:1px solid #BEBEBE;
+border-radius:10px;
+background-color:transparent;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_7">
+     <item>
+      <widget class="QToolButton" name="saveButton">
+       <property name="minimumSize">
+        <size>
+         <width>124</width>
+         <height>49</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Inter</family>
+         <pointsize>24</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#saveButton{
+border:1px solid #BEBEBE;
+background-color:qlineargradient(spread:pad, x1:0.492611, y1:0.278409, x2:0.482887, y2:1, stop:0 rgba(152, 71, 255, 255), stop:1 rgba(0, 63, 226, 222));
+border-radius:22px;
+color:white;
+}</string>
+       </property>
+       <property name="text">
+        <string>SAVE</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+ <buttongroups>
+  <buttongroup name="typeGroup"/>
+  <buttongroup name="projectionGroup"/>
+ </buttongroups>
+</ui>
